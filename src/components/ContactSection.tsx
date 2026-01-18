@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, MapPin, Send, CheckCircle } from "lucide-react";
 import { toast } from "sonner";
+import emailjs from '@emailjs/browser';
 
 const ContactSection = () => {
   const [formState, setFormState] = useState({
@@ -15,15 +16,31 @@ const ContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    
-    toast.success("Message sent successfully!", {
-      description: "I'll get back to you as soon as possible.",
-    });
-    
-    setFormState({ name: "", email: "", message: "" });
-    setIsSubmitting(false);
+    try {
+      await emailjs.send(
+      import.meta.env.VITE_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+      {
+        from_name: formState.name,
+        from_email: formState.email,
+        message: formState.message,
+      },
+      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+    );
+
+      toast.success("Message sent successfully!", {
+        description: "I'll get back to you as soon as possible.",
+      });
+      
+      setFormState({ name: "", email: "", message: "" });
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      toast.error("Failed to send message", {
+        description: "Please try again or contact me directly via email.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
