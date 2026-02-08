@@ -4,7 +4,7 @@ import { Briefcase, GraduationCap, Award, Download } from "lucide-react";
 const experiences = [
   {
     type: "work",
-    title: "Software Deevloper",
+    title: "Software Developer",
     company: "Freelance",
     period: "March 2025 - Present",
     description: "Full-stack development of enterprise management systems, primarily for the private healthcare industry.",
