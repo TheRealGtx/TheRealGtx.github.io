@@ -1,0 +1,166 @@
+backend:
+  name: proxy
+  proxy_url: http://localhost:8081/api/v1
+
+locale: it
+
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+  - name: "data"
+    label: "Contenuti Sito"
+    editor:
+      preview: false
+    files:
+
+      # ── EVENTI ──────────────────────────────────────────────────────────
+      - label: "Eventi"
+        name: "events"
+        file: "src/content/events.json"
+        format: json
+        description: "Aggiungi, modifica o rimuovi gli eventi in programma."
+        fields:
+          - label: "Lista eventi"
+            name: "items"
+            widget: "list"
+            label_singular: "Evento"
+            summary: "{{fields.title}} — {{fields.date}} ore {{fields.time}}"
+            fields:
+              - label: "Titolo"
+                name: "title"
+                widget: "string"
+                hint: "Es: Torneo Yu-Gi-Oh!"
+              - label: "Data"
+                name: "date"
+                widget: "string"
+                hint: "Es: 22 Marzo 2026"
+              - label: "Ora"
+                name: "time"
+                widget: "string"
+                hint: "Es: 17:00"
+              - label: "Categoria"
+                name: "category"
+                widget: "string"
+                hint: "Es: Torneo, Serata, Workshop, Cosplay…"
+              - label: "Descrizione"
+                name: "description"
+                widget: "text"
+                hint: "Breve descrizione dell'evento (2-3 righe)"
+              - label: "Immagine"
+                name: "image"
+                widget: "image"
+                required: false
+                default: "https://picsum.photos/seed/rift-event/800/600"
+                hint: "Carica un'immagine o lascia vuoto per un'immagine generica"
+
+      # ── ORARI ────────────────────────────────────────────────────────────
+      - label: "Orari di Apertura"
+        name: "hours"
+        file: "src/content/hours.json"
+        format: json
+        description: "Modifica gli orari di apertura di ogni giorno. Non aggiungere o eliminare righe."
+        fields:
+          - label: "Orari"
+            name: "items"
+            widget: "list"
+            allow_add: false
+            allow_delete: false
+            summary: "{{fields.day}}: {{fields.time}}"
+            fields:
+              - label: "Giorno"
+                name: "day"
+                widget: "string"
+              - label: "Orario"
+                name: "time"
+                widget: "string"
+                hint: "Scrivi l'orario (Es: 15:30 – 00:00) oppure 'Chiuso'"
+
+      # ── CONTATTI ─────────────────────────────────────────────────────────
+      - label: "Informazioni di Contatto"
+        name: "contact"
+        file: "src/content/contact.json"
+        format: json
+        description: "Indirizzo, telefono, email e link ai social."
+        fields:
+          - label: "Indirizzo"
+            name: "address"
+            widget: "string"
+            hint: "Es: Via dei Giochi 42, 00100 Roma (RM)"
+          - label: "Telefono"
+            name: "phone"
+            widget: "string"
+            hint: "Es: +39 06 1234 5678"
+          - label: "Social Media"
+            name: "socials"
+            widget: "object"
+            collapsed: false
+            fields:
+              - label: "Link Instagram"
+                name: "instagram"
+                widget: "string"
+              - label: "Link Facebook"
+                name: "facebook"
+                widget: "string"
+
+      # ── IMMAGINI ──────────────────────────────────────────────────────────
+      - label: "Immagini del Sito"
+        name: "images"
+        file: "src/content/images.json"
+        format: json
+        description: "Modifica il logo e le foto di sfondo delle varie sezioni del sito."
+        fields:
+          - label: "Logo"
+            name: "logo"
+            widget: "image"
+            hint: "Il logo visualizzato nella hero del sito, sopra il testo RIFT"
+          - label: "Sfondo Hero (pagina iniziale)"
+            name: "hero"
+            widget: "image"
+            hint: "La foto di sfondo della sezione principale in cima al sito (1920×1080 consigliato)"
+          - label: "Foto Chi Siamo"
+            name: "about"
+            widget: "image"
+            hint: "La foto nella sezione Chi Siamo (900×700 consigliato)"
+          - label: "Foto Servizi"
+            name: "services"
+            widget: "object"
+            collapsed: false
+            fields:
+              - label: "Giochi da Tavolo"
+                name: "boardgames"
+                widget: "image"
+                hint: "Foto per la card Giochi da Tavolo (800×500 consigliato)"
+              - label: "Carte Collezionabili"
+                name: "tcg"
+                widget: "image"
+                hint: "Foto per la card Carte Collezionabili (800×500 consigliato)"
+              - label: "Manga & Fumetti"
+                name: "manga"
+                widget: "image"
+                hint: "Foto per la card Manga & Fumetti (800×500 consigliato)"
+              - label: "Bar & Cucina"
+                name: "bar"
+                widget: "image"
+                hint: "Foto per la card Bar & Cucina (800×500 consigliato)"
+              - label: "Area Console"
+                name: "console"
+                widget: "image"
+                hint: "Foto per la card Area Console (800×500 consigliato)"
+
+      # ── CHI SIAMO ────────────────────────────────────────────────────────
+      - label: "Testo Chi Siamo"
+        name: "about"
+        file: "src/content/about.json"
+        format: json
+        description: "I tre paragrafi della sezione 'Chi Siamo'."
+        fields:
+          - label: "Primo paragrafo"
+            name: "paragraph1"
+            widget: "text"
+          - label: "Secondo paragrafo"
+            name: "paragraph2"
+            widget: "text"
+          - label: "Terzo paragrafo"
+            name: "paragraph3"
+            widget: "text"
