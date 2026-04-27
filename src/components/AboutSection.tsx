@@ -1,14 +1,21 @@
 import { motion } from "framer-motion";
-import { Cpu, Database, Globe, Layers, Sparkles, Zap } from "lucide-react";
+import { Database } from "lucide-react";
+import { FaLaptopCode, FaDocker, FaPython, FaJava, FaAws } from "react-icons/fa";
 
 const skills = [
-  { name: "C#", icon: Layers, level: 75 },
-  { name: "Python", icon: Globe, level: 75 },
-  { name: "SQL", icon: Zap, level: 70 },
-  { name: "Java", icon: Cpu, level: 65 },
-  { name: "Docker", icon: Database, level: 60 },
-  { name: "AWS", icon: Sparkles, level: 55 },
+  { name: "C#", icon: FaLaptopCode, level: "Proficient" },
+  { name: "Python", icon: FaPython , level: "Proficient" },
+  { name: "SQL", icon: Database, level: "Proficient" },
+  { name: "Java", icon: FaJava , level: "Familiar" },
+  { name: "Docker", icon: FaDocker , level: "Familiar" },
+  { name: "AWS", icon: FaAws, level: "Familiar" },
 ];
+
+const levels = [
+  { level: "Proficient" },
+  { level: "Familiar" },
+  //{ level: "Expert" },
+]
 
 const AboutSection = () => {
   return (
@@ -40,7 +47,7 @@ const AboutSection = () => {
           >
             <p className="text-muted-foreground leading-relaxed">
               At the age of 14, I chose to study Information Technology and
-              Telecommunications in high school,driven by curiosity, a choice
+              Telecommunications in high school, driven by curiosity, a choice
               I have never regretted. That same curiosity continues to motivate
               me today, as I am currently studying Computer Science at the
               University of Bologna.
@@ -50,16 +57,6 @@ const AboutSection = () => {
               software developer, a role that has allowed me to learn new skills
               and provided many opportunities for professional growth.
             </p>
-            <div className="flex flex-wrap gap-3 pt-4">
-              {["C#", "Java", "SQL", "Python", "AWS", "Docker"].map((tech) => (
-                <span
-                  key={tech}
-                  className="px-4 py-2 glass-card rounded-full text-sm font-mono text-primary"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
           </motion.div>
 
           <motion.div
@@ -69,9 +66,15 @@ const AboutSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="space-y-5"
           >
-            {skills.map((skill, index) => (
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center gap-3">
+                <span className="font-medium">Technical skills</span>
+              </div>
+            </div>
+
+            {levels.map((level, index) => (
               <motion.div
-                key={skill.name}
+                key={level.level}
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -80,21 +83,27 @@ const AboutSection = () => {
               >
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-3">
-                    <skill.icon className="w-5 h-5 text-primary" />
-                    <span className="font-medium">{skill.name}</span>
+                    <span className="font-medium">{level.level}</span>
                   </div>
                 </div>
-                <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${skill.level}%` }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1, delay: 0.5 + index * 0.1 }}
-                    className="h-full bg-gradient-to-r from-primary to-primary/60 rounded-full"
-                  />
-                </div>
+
+                 <div className="flex flex-wrap gap-3">
+                    {skills.filter(skill => skill.level === level.level).map((skill) => {
+                        const Icon = skill.icon;
+                        return (
+                          <div className="flex items-center justify-between mb-2">
+                            <div className="flex items-center gap-3">
+                              <skill.icon className="w-5 h-5 text-primary" />
+                              <span className="font-medium">{skill.name}</span>
+                            </div>
+                          </div>
+                        );
+                      })}
+                  </div>
+
               </motion.div>
             ))}
+
           </motion.div>
         </div>
       </div>

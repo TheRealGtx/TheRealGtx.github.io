@@ -7,14 +7,14 @@ const experiences = [
     title: "Software Developer",
     company: "Freelance",
     period: "March 2025 - Present",
-    description: "Full-stack development of enterprise management systems, primarily for the private healthcare industry.",
+    description: "Full-stack development of enterprise management systems, primarily for the private healthcare industry. Built and deployed a clinic management platform used across 20+ healthcare facilities.",
   },
   {
     type: "work",
     title: "Internship",
     company: "Neri S.p.A",
     period: "May 2023 - June 2023",
-    description: "High school internship: developed internal management software for the production phase and assisted employees.",
+    description: "High school internship: developed internal management software for the production phase and assisted employees in their daily tasks.",
   },
 ];
 

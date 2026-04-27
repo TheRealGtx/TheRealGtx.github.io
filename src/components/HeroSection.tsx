@@ -101,7 +101,6 @@ const HeroSection = () => {
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
-            <ArrowDown className="w-6 h-6 text-muted-foreground" />
           </motion.div>
         </motion.div>
       </div>
