@@ -1,33 +1,37 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Twitter, Globe, FileCode, BookOpen, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
+import { GiChicken } from "react-icons/gi";
+import { FaSchool, FaReceipt } from "react-icons/fa";
 
-const links = [
+
+
+const projects = [
   {
-    name: "GitHub",
-    description: "Open source projects & contributions",
-    url: "https://github.com/TheRealGtx",
-    icon: Github,
+    name: "CrossyRoad",
+    description: "Faithful recreation of the mobile game Crossy Road applying object-oriented design principles. Developed for the course of Object Oriented Programming, final evaluation 30L",
+    url: "https://github.com/TheRealGtx/OOP25-crossy-road",
+    icon: GiChicken,
     color: "from-gray-400 to-gray-600",
   },
   {
-    name: "LinkedIn",
-    description: "Professional network & experience",
-    url: "https://www.linkedin.com/in/giuliano-manzi-80471922b",
-    icon: Linkedin,
+    name: "Classmate",
+    description: "RESTful API backend for a school-oriented social platform allowing students to upload and share lesson notes",
+    url: "https://github.com/TheRealGtx/Classmate",
+    icon: FaSchool,
     color: "from-blue-400 to-blue-600",
   },
   {
-    name: "Portfolio Site",
-    description: "Your first impression of me",
-    url: "#",
-    icon: Globe,
+    name: "Receipt splitter",
+    description: "[Under development]. A website that allows users to split fairly their bills. Scope of the prject is to experiment with Docker, AWS app runner and CI/CD pipelines",
+    url: "https://github.com/TheRealGtx/receipt-splitter",
+    icon: FaReceipt,
     color: "from-purple-400 to-purple-600",
   },
 ];
 
-const LinksSection = () => {
+const Projects = () => {
   return (
-    <section id="links" className="py-24 relative">
+    <section id="projects" className="py-24 relative">
       <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -36,17 +40,17 @@ const LinksSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="font-mono text-primary text-sm mb-4 block">{"// Connect"}</span>
+          <span className="font-mono text-primary text-sm mb-4 block">{"// Projects"}</span>
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Find Me <span className="text-gradient">Online</span>
+            Personal <span className="text-gradient">Projects</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Let's connect across platforms. Follow my work and contributions.
+            A selection of some of my open source projects. Additional business projects are confidential.
           </p>
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {links.map((link, index) => (
+          {projects.map((link, index) => (
             <motion.a
               key={link.name}
               href={link.url}
@@ -79,4 +83,4 @@ const LinksSection = () => {
   );
 };
 
-export default LinksSection;
+export default Projects;
