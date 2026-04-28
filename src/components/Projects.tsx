@@ -22,7 +22,7 @@ const projects = [
   },
   {
     name: "Receipt splitter",
-    description: "[Under development]. A website that allows users to split fairly their bills. Scope of the prject is to experiment with Docker, AWS app runner and CI/CD pipelines",
+    description: "[Under development]. A website that allows users to split fairly their bills. Scope of the project is to experiment with Docker, AWS app runner and CI/CD pipelines",
     url: "https://github.com/TheRealGtx/receipt-splitter",
     icon: FaReceipt,
     color: "from-purple-400 to-purple-600",
