@@ -43,7 +43,7 @@ const education = [
 
 const handleDownload = () => {
   const link = document.createElement('a');
-  link.href = '/Giuliano Manzi CV.pdf';
+  link.href = `${import.meta.env.BASE_URL}GiulianoManzi_CV.pdf`;
   link.download = 'Giuliano Manzi CV.pdf';
   document.body.appendChild(link);
   link.click();
