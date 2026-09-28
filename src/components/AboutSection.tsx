@@ -1,112 +1,46 @@
-import { motion } from "framer-motion";
-import { Database } from "lucide-react";
-import { FaLaptopCode, FaDocker, FaPython, FaJava, FaAws } from "react-icons/fa";
-
 const skills = [
-  { name: "C#", icon: FaLaptopCode, level: "Proficient" },
-  { name: "Python", icon: FaPython , level: "Proficient" },
-  { name: "SQL", icon: Database, level: "Proficient" },
-  { name: "Java", icon: FaJava , level: "Familiar" },
-  { name: "Docker", icon: FaDocker , level: "Familiar" },
-  { name: "AWS", icon: FaAws, level: "Familiar" },
+  { level: "Proficient", items: ["C#", ".NET", "Blazor", "Python", "SQL", "HTML5", "CSS3", "Git"] },
+  { level: "Familiar", items: ["Java", "C", "JavaScript", "Assembly", "Docker", "AWS"] },
 ];
-
-const levels = [
-  { level: "Proficient" },
-  { level: "Familiar" },
-  //{ level: "Expert" },
-]
 
 const AboutSection = () => {
   return (
-    <section id="about" className="py-24 relative">
-      <div className="section-container">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <span className="font-mono text-primary text-sm mb-4 block">{"// About Me"}</span>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Building the <span className="text-gradient">Future</span>
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
-            Computer science student, part time full stack software developer
-          </p>
-        </motion.div>
+    <section id="about" className="section">
+      <h2 className="section-title">About me</h2>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="space-y-6"
-          >
-            <p className="text-muted-foreground leading-relaxed">
-              At the age of 14, I chose to study Information Technology and
-              Telecommunications in high school, driven by curiosity, a choice
-              I have never regretted. That same curiosity continues to motivate
-              me today, as I am currently studying Computer Science at the
-              University of Bologna.
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              Since March 2025, I have been working as a freelance full-stack
-              software developer, a role that has allowed me to learn new skills
-              and provided many opportunities for professional growth.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-5"
-          >
-            <div className="flex items-center justify-between mb-2">
-              <div className="flex items-center gap-3">
-                <span className="font-medium">Technical skills</span>
-              </div>
-            </div>
-
-            {levels.map((level, index) => (
-              <motion.div
-                key={level.level}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="group"
-              >
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-3">
-                    <span className="font-medium">{level.level}</span>
-                  </div>
-                </div>
-
-                 <div className="flex flex-wrap gap-3">
-                    {skills.filter(skill => skill.level === level.level).map((skill) => {
-                        const Icon = skill.icon;
-                        return (
-                          <div className="flex items-center justify-between mb-2">
-                            <div className="flex items-center gap-3">
-                              <skill.icon className="w-5 h-5 text-primary" />
-                              <span className="font-medium">{skill.name}</span>
-                            </div>
-                          </div>
-                        );
-                      })}
-                  </div>
-
-              </motion.div>
-            ))}
-
-          </motion.div>
-        </div>
+      <div className="space-y-4 leading-relaxed">
+        <p>
+          Computer science student, part time full stack software developer.
+        </p>
+        <p>
+          At the age of 14, I chose to study Information Technology and
+          Telecommunications in high school, driven by curiosity, a choice
+          I have never regretted. That same curiosity continues to motivate
+          me today, as I am currently studying Computer Science at the
+          University of Bologna.
+        </p>
+        <p>
+          Since March 2025, I have been working as a freelance full-stack
+          software developer, a role that has allowed me to learn new skills
+          and provided many opportunities for professional growth.
+        </p>
       </div>
+
+      <h3 className="font-bold text-lg mt-10 mb-4">Technical skills</h3>
+      <dl className="grid grid-cols-[7rem_1fr] gap-y-3">
+        {skills.map(({ level, items }) => (
+          <div key={level} className="contents">
+            <dt className="meta pt-0.5">{level}</dt>
+            <dd className="flex flex-wrap gap-2">
+              {items.map((skill) => (
+                <span key={skill} className="rounded border border-border bg-card px-2.5 py-0.5 text-sm">
+                  {skill}
+                </span>
+              ))}
+            </dd>
+          </div>
+        ))}
+      </dl>
     </section>
   );
 };
